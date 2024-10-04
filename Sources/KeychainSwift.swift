@@ -324,6 +324,11 @@ open class KeychainSwift {
     
     var result: [String: Any] = items
     result[KeychainSwiftConstants.accessGroup] = accessGroup
+    #if os(macOS)
+    if #available(macOS 11.0, *) {
+      result[KeychainSwiftConstants.useDataProtection] = true
+    }
+    #endif
     return result
   }
   
